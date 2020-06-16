@@ -1,0 +1,141 @@
+html, body, #root {
+  font-family: "Helvetica";
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+h1 {
+  font-family: "Proxima Nova";
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-family: "Proxima Nova";
+  font-size: 2.8rem;
+  font-weight: bold;
+}
+
+p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.btn {
+  font-family: "Proxima Nova";
+}
+
+.container {
+  margin: auto;
+  padding: 0 20%;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+}
+
+
+
+/* Navbar */
+
+/* .navbar-sh {
+  z-index: 1;
+} */
+
+.navbar {
+  height: 3.6rem;
+  padding: 0 2%;
+}
+
+.company-logo {
+  height: 4rem;
+  position: absolute;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.nav-item {
+  padding: 0 1rem;
+  font-family: "Proxima Nova";
+}
+
+.nav-item a {
+  color: white;
+  text-decoration: none;
+  opacity: 0.5;
+}
+
+.nav-item a:hover {
+  opacity: 0.7;
+}
+
+
+
+/* Landing Page */
+
+.landing {
+  position: relative;
+  background: url("https://wallpaperaccess.com/full/268363.jpg") no-repeat center center/cover;
+  height: 95vh;
+  text-align: center;
+}
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.jumbotron {
+  background-color: transparent;
+  color: white;
+  position: relative;
+  top: 22%;
+}
+
+.landing-btn {
+  margin: 1rem 0.5rem;
+}
+
+
+
+/* Auth Side */
+
+.auth {
+  text-align: center;
+}
+
+.texture {
+  background-color: #e5e5e5;
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.card {
+  width: 19rem;
+  background-color: #eeeeee;
+  border: 0;
+  color: rgb(90, 90, 90);
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card-header {
+  background-color: transparent;
+}
+
+.form-control {
+  border: 0;
+}
+
+.card-body p {
+  font-size: 1rem;
+}
