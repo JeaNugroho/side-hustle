@@ -1,24 +1,40 @@
-import React from 'react'; // useState
+import React, { Fragment } from 'react'; // useState
 import { Link } from "react-router-dom";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { logout } from "../../actions/auth";
 
-const Navbar = () => {
+const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+    const authLinks = (
+        <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+                <a onClick={ logout } href="#!">
+                    <i className="fas fa-sign-out-alt"></i>{" "}
+                    Logout
+                </a>
+            </li>
+        </ul>
+    );
+
+    const guestLinks = (
+        <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+                <Link to="/register">Register</Link>
+            </li>
+            <li className="nav-item">
+                <Link to="/login">Login</Link>
+            </li>
+        </ul>
+    );
 
     return (
         <nav className="navbar navbar-expand navbar-light bg-dark">
             <a className="navbar-brand" href="">
                 <img className="navbar-brand company-logo" src="https://images.squarespace-cdn.com/content/5aa1d485a9e0280e42b306fb/1562714317891-ZKZ0OQSOPG8FNHTT1GG5/side+hustle-logo-white.png?format=1500w&content-type=image%2Fpng" alt="side-hustle-logo" />
             </a>
-
-            <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                    <Link to="/register">Register</Link>
-                </li>
-                <li className="nav-item">
-                    <Link to="/login">Login</Link>
-                </li>
-            </ul>
+            { !loading && (<Fragment>{ isAuthenticated ? authLinks : guestLinks }</Fragment>) }
         </nav>
     );
 
@@ -52,4 +68,13 @@ const Navbar = () => {
 
 }
 
-export default Navbar;
+Navbar.propTypes = {
+    logout: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, { logout })(Navbar);
