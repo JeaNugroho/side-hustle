@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const router = express.Router();
-// const gravatar = require("gravatar");
+const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 // const config = require("config");
@@ -34,14 +34,14 @@ router.post("/", [
         }
 
         // Get users gravatar
-        // const avatar = gravatar.url(email, {
-        //     s: "200",
-        //     r: "pg",
-        //     d: "mm"
-        // });
+        const avatar = gravatar.url(email, {
+            s: "200",
+            r: "pg",
+            d: "mm"
+        });
 
         // Create the new user as object
-        user = new User({name, email, password}); // user = new User({name, email, avatar, password});
+        user = new User({name, email, avatar, password});
 
         // Encrypt password
         const salt = await bcrypt.genSalt(10);

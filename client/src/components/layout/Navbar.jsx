@@ -10,9 +10,15 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     const authLinks = (
         <ul className="navbar-nav ml-auto">
             <li className="nav-item">
+                <Link to="/register">
+                    <i className="fas fa-user"></i>{" "}
+                    <span className="hide-sm">Dashboard</span>
+                </Link>
+            </li>
+            <li className="nav-item">
                 <a onClick={ logout } href="#!">
                     <i className="fas fa-sign-out-alt"></i>{" "}
-                    Logout
+                    <span className="hide-sm">Logout</span>
                 </a>
             </li>
         </ul>
@@ -21,17 +27,23 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     const guestLinks = (
         <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-                <Link to="/register">Register</Link>
+                <Link to="/register">
+                    <i class="fas fa-user-plus"></i>{" "}
+                    <span className="hide-sm">Register</span>
+                </Link>
             </li>
             <li className="nav-item">
-                <Link to="/login">Login</Link>
+                <Link to="/login">
+                    <i class="fas fa-sign-in-alt"></i>{" "}
+                    <span className="hide-sm">Login</span>
+                </Link>
             </li>
         </ul>
     );
 
     return (
         <nav className="navbar navbar-expand navbar-light bg-dark">
-            <a className="navbar-brand" href="">
+            <a className="navbar-brand" href="#!">
                 <img className="navbar-brand company-logo" src="https://images.squarespace-cdn.com/content/5aa1d485a9e0280e42b306fb/1562714317891-ZKZ0OQSOPG8FNHTT1GG5/side+hustle-logo-white.png?format=1500w&content-type=image%2Fpng" alt="side-hustle-logo" />
             </a>
             { !loading && (<Fragment>{ isAuthenticated ? authLinks : guestLinks }</Fragment>) }

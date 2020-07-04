@@ -6,7 +6,7 @@ const db = process.env.MONGOURI;
 const connectDB = async () => {
     try {
 
-        mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+        mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
 
         console.log("MongoDB Connected...");
 

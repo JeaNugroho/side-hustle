@@ -11,8 +11,7 @@ const User = require("../../models/User");
 // @access  Private
 router.get("/me", auth, async (req, res) => {
     try {
-        // this is where you should also get the 'avatar', inside the array and after the name
-        const profile = await Profile.findOne({ user: req.user.id }).populate("user", "name"); // [name]
+        const profile = await Profile.findOne({ user: req.user.id }).populate("user", ["name", "avatar"]);
 
         if (!profile) {
             return res.status(400).json({ msg: "There is no profile for this user" });
@@ -40,30 +39,36 @@ router.post("/", [ auth, [
     const {
         user,
         skills,
+        description,
         address,
-        city,
-        state,
+        // city,
+        // state,
         facebook,
         instagram,
-        youtube
+        youtube,
+        linkedin
     } = req.body;
+    console.log(skills);
 
     // Build profile object
     const profileFields = {};
     profileFields.user = req.user.id;
     if (address) profileFields.address = address;
-    if (skills) {
-        console.log("123");
+    if (skills[0] === "") {
+        profileFields.skills = undefined;
+    } else {
         profileFields.skills = skills.split(",").map(skill => skill.trim());
     }
-    if (city) profileFields.city = city;
-    if (state) profileFields.state = state;
+    if (description) profileFields.description = description;
+    // if (city) profileFields.city = city;
+    // if (state) profileFields.state = state;
     
     // Build social object
     profileFields.social = {};
     if (facebook) profileFields.social.facebook = facebook;
     if (instagram) profileFields.social.instagram = instagram;
     if (youtube) profileFields.social.youtube = youtube;
+    if (linkedin) profileFields.social.linkedin = linkedin;
 
     try{
         let profile = await Profile.findOne({ user: req.user.id });
@@ -75,6 +80,8 @@ router.post("/", [ auth, [
                 { $set: profileFields },
                 { new: true }
             );
+
+            // if (skills)
 
             return res.json(profile);
         }
@@ -94,7 +101,7 @@ router.post("/", [ auth, [
 // @access  Public
 router.get("/:skill", async (req, res) => {
     try {
-        const profiles = await Profile.find({ skills: req.params.skill }).populate("user", "name");
+        const profiles = await Profile.find({ skills: req.params.skill }).populate("user", ["name", "avatar"]);
         res.json(profiles);
     } catch(err) {
         console.error(err.message);
@@ -107,7 +114,7 @@ router.get("/:skill", async (req, res) => {
 // @access  Public
 router.get("/user/:userId", async (req, res) => {
     try {
-        const profile = await Profile.findOne({ user: req.params.userId }).populate("user", "name");
+        const profile = await Profile.findOne({ user: req.params.userId }).populate("user", ["name", "avatar"]);
         res.json(profile);
 
         if (!profile) return res.status(400).json({ msg: "Profile not found" });

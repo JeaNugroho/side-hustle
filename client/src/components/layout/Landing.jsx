@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const Landing = () => {
+const Landing = ({ isAuthenticated }) => {
 
     // const windowSize = useWindowSize();
+
+    if (isAuthenticated) {
+        return <Redirect to="/dashboard" />;
+    }
 
     return (
         <section className="landing">
@@ -11,7 +17,7 @@ const Landing = () => {
                 <div className="jumbotron">
                     <h1>Be Your Own Boss.</h1>
                     <p>Quit your job and start Side Hustling</p>
-                    <Link to="/register" type="button" className="btn btn-lg btn-primary landing-btn">Sign up</Link>
+                    <Link to="/register" type="button" className="btn btn-lg btn-primary buttons">Sign up</Link>
                     <Link to="/login" type="button" className="btn btn-lg btn-outline-light landing-btn">Log in</Link>
                 </div>
             </div>
@@ -19,4 +25,12 @@ const Landing = () => {
     )
 }
 
-export default Landing;
+Landing.propTypes = {
+    isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(Landing);

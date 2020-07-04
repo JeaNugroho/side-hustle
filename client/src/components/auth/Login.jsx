@@ -5,6 +5,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/auth";
+import Alert from "../layout/Alert";
 
 const Login = ({ login, isAuthenticated }) => {
 
@@ -30,7 +31,8 @@ const Login = ({ login, isAuthenticated }) => {
 
     return (
         <Fragment>
-            <div className="auth texture">
+            <div className="auth-container">
+                <Alert />
                 <div className="card shadow p-3 mb-5 rounded">
                     <div className="card-header">
                         <h2>Sign In</h2>
@@ -39,14 +41,14 @@ const Login = ({ login, isAuthenticated }) => {
                     <div className="card-body">
                         <form onSubmit={ e => onSubmit(e) }>
                             <div className="form-group">
-                                <input type="email" name="email" value={email} onChange={e => onChange(e)} required className="form-control shadow-sm" placeholder="Email" />
+                                <input type="email" name="email" value={email} onChange={e => onChange(e)} className="form-control" placeholder="Email" />
                             </div>
                             <div className="form-group">
-                                <input type="password" name="password" value={password} onChange={e => onChange(e)} required className="form-control shadow-sm" placeholder="Password" minLength="12" />
+                                <input type="password" name="password" value={password} onChange={e => onChange(e)} className="form-control" placeholder="Password" />
                             </div>
                             <button type="submit" className="btn btn-primary btn-block shadow-sm">Login</button>
                         </form>
-                        <p>
+                        <p className="info">
                             <br />Don't have an account?
                             <br /><Link to="/register">Sign Up</Link>
                         </p>

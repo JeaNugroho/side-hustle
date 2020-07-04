@@ -5,21 +5,37 @@ const ProfileSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     },
+    description: {
+        type: String,
+        required: false
+    },
     skills: {
-        type: [String]
+        type: [String],
+        required: false
     },
     address: {
         type: String,
         required: true
     },
-    city: {
-        type: String,
-        required: true
-    },
-    state: {
-        type: String,
-        required: true
-    },
+    // location : {
+    //     type: {
+    //         type: String,
+    //         enum: ["Point"],
+    //         required: true
+    //     },
+    //     coordinates: {
+    //         type: [Number],
+    //         required: true
+    //     }
+    // },
+    // city: {
+    //     type: String,
+    //     required: true
+    // },
+    // state: {
+    //     type: String,
+    //     required: true
+    // },
     social: {
         facebook: {
             type: String
@@ -28,6 +44,9 @@ const ProfileSchema = new mongoose.Schema({
             type: String
         },
         youtube: {
+            type: String
+        },
+        linkedin: {
             type: String
         }
     },
@@ -39,7 +58,9 @@ const ProfileSchema = new mongoose.Schema({
                     ref: "users"
                 },
                 rate: {
-                    type: Number
+                    type: Number,
+                    min: [1, "Min. Rating: 1"],
+                    max: [5, "Max. Rating: 5"]
                 },
                 date: {
                     type: Date,

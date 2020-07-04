@@ -4,11 +4,16 @@ html, body, #root {
   margin: 0;
   padding: 0;
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
   background-color: #eeeeee;
   background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+  color: rgb(90, 90, 90);
 }
+
+/* body {
+  overflow: scroll;
+} */
 
 h1 {
   font-family: "Proxima Nova";
@@ -20,6 +25,13 @@ h2 {
   font-family: "Proxima Nova";
   font-size: 2.8rem;
   font-weight: bold;
+}
+
+h3 {
+  font-family: "Proxima Nova";
+  font-size: 1.6;
+  font-weight: bold;
+  margin: 1rem 0 0.5rem;
 }
 
 p {
@@ -34,7 +46,30 @@ p {
   color: black; */
 }
 
+.info {
+  font-size: 1rem;
+}
 
+.buttons {
+  margin: 1rem 0.5rem;
+}
+
+.btn-light {
+  border: 2px solid #e5e5e5;
+}
+
+
+
+/* Alert */
+
+.alert {
+  /* width: 100%; */
+  margin-top: 0.5rem;
+  position: relative;
+  bottom: 0.5rem;
+  text-align: center;
+  line-height: normal;
+}
 
 
 
@@ -68,19 +103,7 @@ p {
 }
 
 .nav-item a:hover {
-  opacity: 0.7;
-}
-
-
-
-/* Alert */
-
-.alert {
-  width: 100%;
-  position: absolute;
-  top: 0.15rem;
-  text-align: center;
-  line-height: normal;
+  opacity: 0.8;
 }
 
 
@@ -108,10 +131,6 @@ p {
   color: white;
   position: relative;
   top: 22%;
-}
-
-.landing-btn {
-  margin: 1rem 0.5rem;
 }
 
 
@@ -160,6 +179,99 @@ p {
   border: 0;
 }
 
-.card-body p {
-  font-size: 1rem;
+
+
+/* Dashboard Side */
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.spinner {
+  margin: auto;
+  display: block;
+  position: relative;
+  top: 30%;
+}
+
+p .fa-user {
+  margin-bottom: 1.5rem;
+}
+
+.half-dashboard-display {
+  width: 50%;
+  display: inline-block;
+  top: 0;
+}
+
+.left-half-dashboard, .right-half-dashboard {
+  width: 50%;
+  display: inline-block;
+  top: 0;
+}
+
+.left-half-dashboard {
+  float: left;
+}
+
+/* .column-2 {
+  text-align: right;
+} */
+
+.badges {
+  margin: 0 0.2rem;
+  border: 2px solid #e5e5e5;
+}
+
+dd {
+  padding-left: 2.5rem;
+}
+
+
+
+/* Create Profile Side */
+
+.container .info {
+  margin: 2rem 0;
+}
+
+.profile-form {
+  margin-top: 2rem;
+}
+
+span.input-group-text {
+  background-color: transparent;
+  border: 0;
+  /* padding: 0;
+  padding-right: 1rem; */
+  text-align: center;
+}
+
+.text-area {
+  white-space: pre-wrap;
+}
+
+/* .input-group.mb-3 {
+  text-align: right;
+} */
+
+/* .alert-container {
+  max-width: 1100px;
+  margin-top: 0;
+  padding: 0 2rem;
+  position: relative;
+} */
+
+
+
+@media (max-width: 767px) {
+  .hide-sm {
+    display: none
+  }
 }
