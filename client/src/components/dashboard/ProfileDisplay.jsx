@@ -13,15 +13,15 @@ const ProfileDisplay = ({ profile }) => {
 
     return (
         <Fragment>
-            { ((skills && skills[0] !== "") || description) ? (<div className="half-dashboard-display">
+            { ((skills && skills[0] !== "") || description) ? (<div className="left-half-dashboard">
                 { skills && skills[0] !== "" && <h3>Skills</h3> }
                 <dd><h3>{ displaySkills }</h3></dd>
 
-                { description && <h3>Description</h3> }
+                { description && description !== "" && <h3>Description</h3> }
                 <dd><p className="text-area">{ description }</p></dd>
             </div>) : null }
 
-            <div className="half-dashboard-display">
+            <div className="right-half-dashboard">
                 { address && <h3>Address</h3> }
                 <dd><p>{ address }</p></dd>
 

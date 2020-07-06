@@ -59,7 +59,11 @@ router.post("/", [ auth, [
     } else {
         profileFields.skills = skills.split(",").map(skill => skill.trim());
     }
-    if (description) profileFields.description = description;
+    if (description === "") {
+        profileFields.description = undefined;
+    } else {
+        profileFields.description = description;
+    }
     // if (city) profileFields.city = city;
     // if (state) profileFields.state = state;
     

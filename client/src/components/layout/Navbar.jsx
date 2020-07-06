@@ -11,8 +11,14 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <ul className="navbar-nav ml-auto">
             <li className="nav-item">
                 <Link to="/register">
+                    <i className="fas fa-search"></i>{" "}
+                    <span className="hide-sm">Search</span>
+                </Link>
+            </li>
+            <li className="nav-item">
+                <Link to="/register">
                     <i className="fas fa-user"></i>{" "}
-                    <span className="hide-sm">Dashboard</span>
+                    <span className="hide-sm">{  }</span>
                 </Link>
             </li>
             <li className="nav-item">
@@ -26,6 +32,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
     const guestLinks = (
         <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+                <Link to="/register">
+                    <i className="fas fa-search"></i>{" "}
+                    <span className="hide-sm">Search</span>
+                </Link>
+            </li>
             <li className="nav-item">
                 <Link to="/register">
                     <i class="fas fa-user-plus"></i>{" "}
