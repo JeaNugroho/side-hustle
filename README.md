@@ -60,6 +60,6 @@ The **React Components** are within the components folder, with the folders:\
 - layout: navbar, alert, landing page (before registration and login), loading icon
 - routing: enclose private routes with authentication (receives auth state)
 - profiles: search tab page
-- profile: page for individual profile being viewed from profiles page (borrows dashboard's ProfileDisplay.jsx) and Google Maps top-view of the viewed profile.\
-\
-As the final setup, the base URL is listed in the package.json as **proxy** (at the bottom of the file) for the front-end to be able **to communicate with the back-end**.\
+- profile: page for individual profile being viewed from profiles page (borrows dashboard's ProfileDisplay.jsx) and Google Maps top-view of the viewed profile.
+
+As the final setup, the base URL is listed in the package.json as **proxy** (at the bottom of the file) for the front-end to be able **to communicate with the back-end**.
