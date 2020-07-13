@@ -10,7 +10,6 @@ import {
     LOGOUT,
     CLEAR_PROFILE
 } from "./types";
-// import setAuthTOken from "../utils/setAuthToken";
 import setAuthToken from "../utils/setAuthToken";
 
 // Load User

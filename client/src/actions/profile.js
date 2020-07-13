@@ -19,6 +19,8 @@ export const getCurrentProfile = () => async dispatch => {
             payload: res.data
         });
     } catch (err) {
+        dispatch({ type: CLEAR_PROFILE });
+
         dispatch({
             type: PROFILE_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
@@ -26,12 +28,21 @@ export const getCurrentProfile = () => async dispatch => {
     }
 }
 
-// Get multiple profiles based on a skill
+// Get multiple profiles by skill
 export const getProfiles = skill => async dispatch => {
     dispatch({ type: CLEAR_PROFILE });
 
     try {
-        const res = await axios.get("/api/profile/");
+        const res = await axios.get(`/api/profile/${skill}`);
+        console.log(res.data[0]);
+
+        if (res.data.length === 0) {
+            dispatch(setAlert("No profiles found", "info", 2500));
+        }
+
+        // const filteredRes = (res.data).filter(profile => {
+        //     return 
+        // });
 
         dispatch({
             type: GET_PROFILES,
@@ -97,11 +108,42 @@ export const createProfile = (formData, history, edit = false) => async dispatch
     }
 }
 
+// Rate a profile
+export const rateProfile = (profileId, rating, history) => async dispatch => {
+    try {
+        const config = {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        };
+
+        const rateData = {
+            rate: rating
+        };
+
+        const res = await axios.put(`/api/profile/rate/${profileId}`, rateData, config);
+
+        if (res.status === 400 || res.status === 403) {
+            dispatch(setAlert(res.json.msg, "info", 4500));
+        } else {
+            dispatch(setAlert("Thank you, your rating is helpful for us!", "success", 4500));
+        }
+
+        history.push("/profiles");
+    } catch (err) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+        history.push("/profiles");
+    }
+}
+
 // Delete account & profile
 export const deleteAccount = () => async dispatch => {
     if (window.confirm("Are you sure? This can NOT be undone!")) {
         try {
-            const res = await axios.delete("/api/profile");
+            await axios.delete("/api/profile");
 
             dispatch({ type: CLEAR_PROFILE });
             dispatch({ type: ACCOUNT_DELETED });

@@ -5,6 +5,10 @@ const ProfileSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     },
+    headline: {
+        type: String,
+        required: false
+    },
     description: {
         type: String,
         required: false
@@ -17,25 +21,14 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // location : {
-    //     type: {
-    //         type: String,
-    //         enum: ["Point"],
-    //         required: true
-    //     },
-    //     coordinates: {
-    //         type: [Number],
-    //         required: true
-    //     }
-    // },
-    // city: {
-    //     type: String,
-    //     required: true
-    // },
-    // state: {
-    //     type: String,
-    //     required: true
-    // },
+    geocode: {
+        lat: {
+            type: Number
+        },
+        lng: {
+            type: Number
+        }
+    },
     social: {
         facebook: {
             type: String
@@ -81,11 +74,6 @@ const ProfileSchema = new mongoose.Schema({
             default: 0
         }
     }
-    // date: {
-    //     type: Date,
-    //     default: Date.now
-    // } 
-    // profile pic, rating, reviews
 });
 
 module.exports = mongoose.model("profile", ProfileSchema);

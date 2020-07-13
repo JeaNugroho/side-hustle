@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'; // useState
+import React, { Fragment, useState } from 'react'; // useState
 import { Link } from "react-router-dom";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
@@ -7,10 +7,29 @@ import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+    // const [searchString, setSearchString] = useState("");
+
+    // const onChange = e => 
+    //     setSearchString(e.target.value);
+
+    // const onSubmit = e => {
+    //     e.preventDefault();
+    //     console.log(searchString);
+
+    //     return (<Redirect to={ "/profile/" + searchString } />);
+    // }
+
+    // const searchForm = (
+    //     <form className="form-inline" onSubmit={ e => onSubmit(e) }>
+    //         <input className="form-control navbar-search mr-sm-2" type="search" placeholder="Search" name="searchString" value={ searchString } onChange={ e => onChange(e) } />
+    //         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    //     </form>
+    // );
+
     const authLinks = (
         <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-                <Link to="/register">
+                <Link to="/profiles">
                     <i className="fas fa-search"></i>{" "}
                     <span className="hide-sm">Search</span>
                 </Link>
@@ -18,7 +37,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             <li className="nav-item">
                 <Link to="/register">
                     <i className="fas fa-user"></i>{" "}
-                    <span className="hide-sm">{  }</span>
+                    <span className="hide-sm">Dashboard</span>
                 </Link>
             </li>
             <li className="nav-item">
@@ -32,12 +51,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
     const guestLinks = (
         <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-                <Link to="/register">
+            {/* <li className="nav-item">
+                <Link to="/profiles">
                     <i className="fas fa-search"></i>{" "}
                     <span className="hide-sm">Search</span>
                 </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
                 <Link to="/register">
                     <i class="fas fa-user-plus"></i>{" "}

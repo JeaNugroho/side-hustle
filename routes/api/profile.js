@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const auth = require("../../middleware/auth");
@@ -5,6 +6,7 @@ const { check, validationResult } = require("express-validator");
 
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
+const opencage = require('opencage-api-client');
 
 // @route   GET api/profile/me
 // @desc    Get current users profile
@@ -39,6 +41,7 @@ router.post("/", [ auth, [
     const {
         user,
         skills,
+        headline,
         description,
         address,
         // city,
@@ -59,6 +62,11 @@ router.post("/", [ auth, [
     } else {
         profileFields.skills = skills.split(",").map(skill => skill.trim());
     }
+    if (headline === "") {
+        profileFields.headline = undefined;
+    } else {
+        profileFields.headline = headline;
+    }
     if (description === "") {
         profileFields.description = undefined;
     } else {
@@ -74,7 +82,14 @@ router.post("/", [ auth, [
     if (youtube) profileFields.social.youtube = youtube;
     if (linkedin) profileFields.social.linkedin = linkedin;
 
+    profileFields.geocode = {};
+
     try{
+        const possibleLocations = await opencage.geocode({ q: profileFields.address, key: process.env.OPEN_CAGE_API_KEY });
+        profileFields.geocode.lat = possibleLocations.results[0].geometry.lat;
+        profileFields.geocode.lng = possibleLocations.results[0].geometry.lng;
+        console.log(profileFields);
+
         let profile = await Profile.findOne({ user: req.user.id });
 
         if (profile) {
@@ -85,7 +100,7 @@ router.post("/", [ auth, [
                 { new: true }
             );
 
-            // if (skills)
+            // console.log(profile);
 
             return res.json(profile);
         }
@@ -118,11 +133,12 @@ router.get("/:skill", async (req, res) => {
 // @access  Public
 router.get("/user/:userId", async (req, res) => {
     try {
-        const profile = await Profile.findOne({ user: req.params.userId }).populate("user", ["name", "avatar"]);
-        res.json(profile);
+        const profile = await Profile.findOne({ user: req.params.userId }).populate("user", ["name", "avatar", "email"]);
+        // res.json(profile);
 
         if (!profile) return res.status(400).json({ msg: "Profile not found" });
 
+        profile.mk = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
         res.json(profile);
     } catch(err) {
         console.error(err.message);
@@ -160,12 +176,12 @@ router.put("/rate/:id", auth, async (req, res) => {
 
         // Block the rate if rate user itself
         if (profile.user.toString() === req.user.id) {
-            return res.status(403).json({ msg: "User cannot self-rate", errorpic: "https://httpstatusdogs.com/img/403.jpg" });
+            return res.status(403).json({ msg: "You can not rate your own profile", errorpic: "https://httpstatusdogs.com/img/403.jpg" });
         }
 
         // Check if profile has been rated
         if (profile.rateroot.ratings.filter(rate => rate.user.toString() === req.user.id).length > 0) {
-            return res.status(400).json({ msg: "Profile already rated" });
+            return res.status(400).json({ msg: "You have rated this profile" });
         }
 
         const newRating = {
