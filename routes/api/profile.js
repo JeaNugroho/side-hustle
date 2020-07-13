@@ -72,8 +72,6 @@ router.post("/", [ auth, [
     } else {
         profileFields.description = description;
     }
-    // if (city) profileFields.city = city;
-    // if (state) profileFields.state = state;
     
     // Build social object
     profileFields.social = {};
@@ -99,8 +97,6 @@ router.post("/", [ auth, [
                 { $set: profileFields },
                 { new: true }
             );
-
-            // console.log(profile);
 
             return res.json(profile);
         }

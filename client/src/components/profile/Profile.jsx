@@ -38,7 +38,13 @@ const Profile = ({ getProfileById, rateProfile, profile: { profile, loading }, a
                     <Alert />
                     <div className="mt-4 mb-3 list-container rounded shadow" style={{ textAlign: "center" }}>
                         <img src={ profile.user.avatar } className="mr-3 rounded-circle list-picture d-inline-block" alt="profile pic" />
-                        <h2 className="d-inline-block" style={{ transform: "translate(0, 15%)" }}>{ profile.user.name }</h2>
+                        <Fragment>
+                            <h2 className="d-inline-block" style={{ transform: "translate(0, 15%)" }}>{ profile.user.name }</h2>
+                            <p>
+                                <i class="far fa-envelope"></i>{": "}
+                                { profile.user.email }
+                            </p>
+                        </Fragment>
                     </div>
                     
                     
