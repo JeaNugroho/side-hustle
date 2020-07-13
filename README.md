@@ -9,6 +9,8 @@ Side Hustle could be the break through for this problem by centralizing these pa
 ## Table Of Contents
 1. [User](#User)
 2. [Developer](#Developer)
+    - [BackEnd](#BackEnd)
+    - [FrontEnd](#FrontEnd)
 
 ## User
 All users, whether suppliers or customers, **should have a profile** made for themselves.\
@@ -20,4 +22,28 @@ For supploers, each field in the profile creation is crucial to give customers t
 Each customer that has been served can rate their supplier after he/she has given the service.
 
 ## Developer
-To briefly introduce, this web application is built using the MERN (MongoDB, Express.js, React.js, Node.js) stack, in the manner where the client file (the React App) is inside the root. So the root of the project contains the React App, the server.js (equivalent to index.js), and the back-end routes.
+To briefly introduce, this web application is built using the **MERN** (MongoDB, Express.js, React.js, Node.js) stack, in the manner where the client file (the React App) is inside the root.\
+To re-explain the **file organization**, the root of the project contains the React App (the client folder), the server.js (equivalent to index.js), and the back-end routes (in routes/api).
+
+## BackEnd
+The **Express Router** is used for the different routes, which are defined in the routes/api folder.\
+\
+**User routes** are in auth.js and users.js, in which the auth.js post request registers the user and the user.js post request logs the user in.\
+The get request in auth.js is used to load the user into the React App later in the front-end.\
+\
+For authentication, we use **JSONWebToken**, and the function for this is located in the middleware folder (inside auth.js).\
+The profile routes are in profile.js (within the routes/api folder).\
+The profile creation/update route is also responsible for utilizing **OpenCage API** to get the geometry latitude and longtitude of the address, while a **Google Maps API** is being sent to the React App by the profile.
+The connection to **MongoDB** is in the config folder (inside db.js).
+
+## FrontEnd
+This section is within the client folder.\
+\
+The public folder is for the HTML file and for the favicon to be displayed.\
+The rest of the code is located within the src folder.\
+\
+One crucial element is **Redux** state management to keep hold of the data needed at the moment, which includes auth (the token stored), profile (the profile(s) being displayed), and alerts to inform users after their actions.\
+And as usual, The Redux boilerplate, is placed in store.js.\
+\
+The actions folder contains functions that call the back-end using **axios**. For it to be able to communicate with the back-end, the base URL is listed in the package.json as **proxy** (at the bottom of the file).\
+\
