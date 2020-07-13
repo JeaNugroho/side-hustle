@@ -15,8 +15,8 @@ All users, whether suppliers or customers, **should have a profile** made for th
 The profile being made must include **contact info** (mandatory: email, optional: social media fields listed) and an **address**, as it is necessary to enable both parties to get in touch and to meet up if applicable.\
 The email is going to be registered once the user has signed up and the address is going to be prompted when creating or editing the user's own profile in the **dashboard**.\
 For customers to be able to search up talents, click the **search** tab and type-in the talent in the search bar.\
-For supploers, each field in the profile creation is crucial to give customers the details you want them to know, and follow the prompt details for each field.\ \
-
+For supploers, each field in the profile creation is crucial to give customers the details you want them to know, and follow the prompt details for each field.\
+\
 Each customer that has been served can rate their supplier after he/she has given the service.
 
 ## Developer
