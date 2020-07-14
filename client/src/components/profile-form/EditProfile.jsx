@@ -114,7 +114,9 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                     <input type="text" name="linkedin" className="form-control rounded col-11 ml-auto" placeholder="LinkedIn URL" value={ linkedin } onChange={ e => onChange(e) } />
                 </div>
                 
-                <Link type="button" className="btn btn-dark buttons" to="/dashboard">Go Back</Link>
+                <Link type="button" className="btn btn-dark buttons" to="/dashboard">
+                    <i class="fas fa-arrow-left"></i>{" "}Back
+                </Link>
                 <button className="btn btn-primary buttons" type="submit">Save</button>
             </form>
         </div>
