@@ -53,7 +53,7 @@ Within the src folder, the actions folder contains functions that call the back-
 Afterwards, by the end of each action function, these actions also dispatch to the reducer to alter the state.\
 The **state reducers** are within the reducers folder, with the combined reducers in the index.js as one state unit.\
 These states will then be ready to be sent to the React Components as Props.
-The **React Components** are within the components folder, with the folders:\
+The **React Components** (controlled by React Routes) are within the components folder, with the folders:\
 - auth: authenticating users (registration and log-in)
 - dashboard: dashboard tab page (current user profile display)
 - profile-form: profile forms, linked from dashboard (current user profile create/update)
