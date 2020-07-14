@@ -1,6 +1,7 @@
-require("dotenv").config();
+// require("dotenv").config();
 const express = require("express");
 const router = express.Router();
+const config = require("config");
 const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator");
 
@@ -83,10 +84,9 @@ router.post("/", [ auth, [
     profileFields.geocode = {};
 
     try{
-        const possibleLocations = await opencage.geocode({ q: profileFields.address, key: process.env.OPEN_CAGE_API_KEY });
+        const possibleLocations = await opencage.geocode({ q: profileFields.address, key: config.get("OPEN_CAGE_API_KEY") });
         profileFields.geocode.lat = possibleLocations.results[0].geometry.lat;
         profileFields.geocode.lng = possibleLocations.results[0].geometry.lng;
-        console.log(profileFields);
 
         let profile = await Profile.findOne({ user: req.user.id });
 
@@ -134,7 +134,7 @@ router.get("/user/:userId", async (req, res) => {
 
         if (!profile) return res.status(400).json({ msg: "Profile not found" });
 
-        profile.mk = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+        profile.mk = config.get("REACT_APP_GOOGLE_MAPS_API_KEY");
         res.json(profile);
     } catch(err) {
         console.error(err.message);

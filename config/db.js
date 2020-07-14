@@ -1,7 +1,7 @@
-require("dotenv").config();
+// require("dotenv").config();
 const mongoose = require("mongoose");
-// const config = require("config");
-const db = process.env.MONGOURI;
+const config = require("config");
+const db = config.get("MONGOURI");
 
 const connectDB = async () => {
     try {
