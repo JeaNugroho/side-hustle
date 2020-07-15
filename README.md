@@ -24,7 +24,15 @@ Each customer that has been served can rate their supplier after he/she has give
 ## Developer
 To briefly introduce, this web application is built using the **MERN** (MongoDB, Express.js, React.js, Node.js) stack, in the manner where the client file (the React App) is inside the root.\
 To re-explain the **file organization**, the root of the project contains the React App (the client folder), the server.js (equivalent to index.js), and the back-end routes (in routes/api).\
-For development purposes, localhost:5000 was used as the back-end URL, and localhost:3000 was used as the React App.
+For development purposes, localhost:5000 was used as the back-end URL, and localhost:3000 was used as the React App.\
+\
+[Link to Web Application](https://enthousiaste-madame-62984.herokuapp.com/)\
+In package.json that is at the same level as server.js, there is a script object where each of its line is used for the following:
+- npm run start (run back-end server)
+- npm run server (run back-end server with automatic refresh on code change)
+- npm run client (run front-end (React))
+- npm run dev (run both front & back end)
+- (the 5th one is for Heroku deployment)
 
 ## BackEnd
 The **Express Router** is used for the different routes, which are defined in the routes/api folder.\
@@ -61,5 +69,8 @@ The **React Components** (controlled by React Routes) are within the components 
 - routing: enclose private routes with authentication (receives auth state)
 - profiles: search tab page
 - profile: page for individual profile being viewed from profiles page (borrows dashboard's ProfileDisplay.jsx) and Google Maps top-view of the viewed profile.
+
+The React components will then trigger action calls when user interacts with the React components, and thus it's a cycle.\
+\
 
 As the final setup, the base URL is listed in the package.json as **proxy** (at the bottom of the file) for the front-end to be able **to communicate with the back-end**.
