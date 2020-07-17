@@ -34,6 +34,8 @@ In package.json that is at the same level as server.js, there is a script object
 - npm run dev (run both front & back end)
 - (the 5th one is for Heroku deployment)
 
+[Link to back-end API documentation, user tutorial video, and developer walkthrough video](https://drive.google.com/drive/folders/1np5rqscacRIBOyIL4R8PvlqT5R3MN9EO?usp=sharing)
+
 ## BackEnd
 The **Express Router** is used for the different routes, which are defined in the routes/api folder.\
 \
@@ -45,8 +47,7 @@ The profile routes are in profile.js (within the routes/api folder).\
 The profile creation/update route is also responsible for utilizing **OpenCage API** to get the geometry latitude and longtitude of the address, while a **Google Maps API** is being sent to the React App by the profile.
 The connection to **MongoDB** is in the config folder (inside db.js).\
 \
-For development purposes before there was the front-end part, the desktop **Postman** had been helpful to call on the routes.\
-Full API endpoints documentation can be found [here](https://drive.google.com/drive/folders/1np5rqscacRIBOyIL4R8PvlqT5R3MN9EO?usp=sharing).
+For development purposes before there was the front-end part, the desktop **Postman** had been helpful to call on the routes.
 
 ## FrontEnd
 This section is within the client folder.\
@@ -74,3 +75,10 @@ The React components will then trigger action calls when user interacts with the
 \
 
 As the final setup, the base URL is listed in the package.json as **proxy** (at the bottom of the file) for the front-end to be able **to communicate with the back-end**.
+
+## Further Improvements
+- Minor front-end glitches (between React Fragments and div tags)
+- Make application responsive (can be viewed elegantly on mobile phones web)
+- Profiles searched can be toggled (all results or just within your area/state)
+- Search engine (currently the search is based on a single skills array element). Better: more relevant search engine (e.g. calculus tutor, jazz piano tutor, etc.)
+- Research for a good and free directions (and probably its maps as a pair) API. I recommend trying on MapBox and TomTom. Google Maps is not the only alternative Maps API, and can be switched with a pairing directions API that works for free
